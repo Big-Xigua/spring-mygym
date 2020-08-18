@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情</title>
+</head>
+<link type="text/css" rel="stylesheet" href="../commons/bootstrap/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="../commons/bootstrap/table/bootstrap-table.min.css">
+<link type="text/css" rel="stylesheet" href="../commons/toastr/toastr.min.css">
+<link type="text/css" rel="stylesheet" href="../commons/validate/bootstrapValidator.css">
+<link type="text/css" rel="stylesheet" href="../commons/css/common.css">
+
+<body>
+<div class="form-groupd">
+    <label for="searchName" class="label-control">商品名字</label>
+    <input type="text" class="form-control" id="searchName" placeholder="商品名字">
+</div>
+<div class="form-groupd">
+    <label for="searchName" class="label-control">商品状态</label>
+    <select class="form-control" id="searchStatus">
+        <option value="-1">全部</option>
+        <option value="0">服务商品</option>
+        <option value="1">普通商品</option>
+    </select>
+</div>
+<button type="button" class="btn btn-primary" onclick="goodsManage.search()">搜索</button>
+<div class="tab-pane">
+    <table class="table table-bordered table-striped" id="goodsList">
+        <thead style="background-color: #BEDDFA">
+
+        </thead>
+    </table>
+</div>
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    修改商品信息
+                </h4>
+            </div>
+            <div class="modal-body">
+                <form id="goodsForm">
+                    <label class="label" id="goodsId" name="goodsId"></label>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">商品名字</span>
+                                <input class="form-control" placeholder="商品名字" name="goodsName" id="goodsName">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">商品库存</span>
+                                <input class="form-control" placeholder="商品库存" name="goodsCode" id="goodsCode">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">商品单位</span>
+                                <select class="form-control" id="unitId">
+                                    <option value="1">瓶</option>
+                                    <option value="2">桶</option>
+                                    <option value="3">节</option>
+                                    <option value="4">支</option>
+                                    <option value="5">件</option>
+                                    <option value="6">双</option>
+                                    <option value="7">个</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">商品类型</span>
+                                <select class="form-control" id="goodsType">
+                                    <option value="1">普通商品</option>
+                                    <option value="0">服务商品</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">商品价格</span>
+                                <input class="form-control" placeholder="商品价格" name="goodsPrice" id="goodsPrice">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">商品类型</span>
+                                <select class="form-control" id="goodsStatus">
+                                    <option value="1">下架</option>
+                                    <option value="0">在售</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">
+                    关闭
+                </button>
+                <button type="button" class="btn btn-primary"  onclick="goodsManage.operate()">
+                    确认
+                </button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+<script type="text/javascript" src="../commons/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../commons/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="../commons/bootstrap/table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="../commons/bootstrap/table/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="../commons/validate/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../commons/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="../commons/confirm/bootstrap.confirm.js"></script>
+<script type="text/javascript" src="../commons/laydate/laydate.js"></script>
+<script type="text/javascript" src="goodsApi.js"></script>
+</html>

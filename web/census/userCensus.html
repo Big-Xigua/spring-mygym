@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style type="text/css">
+        #body1{
+            background-color:#F0F0F0;
+        }
+        #main3{
+            margin-top: 20px;
+            width: 90%;
+            height: 600px;
+
+        }
+
+    </style>
+<body id="body1">
+<center><div id="main3" ></div></center>
+
+</body>
+<script type="text/javascript" src="../commons/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../commons/echars/echarts.min.js"></script>
+<script type="text/javascript">
+    /**
+     *会员增长趋势统计
+     */
+    var months;
+    var datas;
+    $(function () {
+        $.ajax({
+            url:"/GetUserByNearYearServlet",
+            type:'post',
+            dataType : 'json',
+            success:function (result) {
+                months = result.data.ints;
+                datas = result.data.doubles;
+                // 使用刚指定的配置项和数据显示图表。
+                // 基于准备好的dom，初始化echarts实例
+                var myChart = echarts.init(document.getElementById('main3'));
+                // 指定图表的配置项和数据
+                var option = {
+                    title: {
+                        text: '会员增长趋势统计'
+                    },
+                    tooltip: {
+                        trigger: 'axis'
+                    },
+                    xAxis: {
+                        type: 'category',
+                        data: months
+                    },
+                    yAxis: {
+                        type: 'value'
+                    },
+                    series: [{
+                        name:'会员统计',
+                        stack: '会员注册数',
+                        data: datas,
+                        type: 'line'
+                    }]
+                };
+                myChart.setOption(option);
+            }
+        })
+    })
+
+
+
+</script>

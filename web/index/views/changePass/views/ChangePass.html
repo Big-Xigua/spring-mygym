@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>个人信息</title>
+    <link type="text/css" rel="stylesheet" href="../../../../commons/bootstrap/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="../../../../commons/bootstrap/table/bootstrap-table.min.css">
+    <link type="text/css" rel="stylesheet" href="../../../../commons/validate/bootstrapValidator.css">
+    <link type="text/css" rel="stylesheet" href="../../../../commons/toastr/toastr.min.css">
+    <link rel="stylesheet" href="../../../../commons/css/common.css" />
+    <style type="text/css">
+        #topSlotCard{
+            margin-left: 200px;
+            width: 70%;
+        }
+        #topSlotCard1{
+            margin-left: 200px;
+            width:35%;
+        }
+        #tab1{
+            height: 200px;
+            width: 820px;
+        }
+        #tab1 td{
+            width: 200px;
+            height: 40px;
+        }
+    </style>
+</head>
+<body>
+<div id="topSlotCard">
+    <table id="tab" class="table table-striped table-hover table-bordered" >
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">员工信息</h3>
+            </div>
+            <div>
+                &nbsp;
+            </div>
+            <div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">员工ID  </span>
+                            <input class="form-control" placeholder="" readonly="readonly" name="staffId" id="staffId">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">员工姓名  </span>
+                            <input class="form-control" placeholder="" readonly="readonly" name="userName" id="userName">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">员工电话 </span>
+                            <input class="form-control" placeholder="" readonly="readonly" name="phone" id="phone">
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">员工身份证号码</span>
+                            <input class="form-control" placeholder="" readonly="readonly" name="idCard" id="idCard">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">员工地址  </span>
+                            <input class="form-control" placeholder="" readonly="readonly" name="address" id="address">
+                        </div>
+                    </div>
+                    <div class="col-md-6">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">入职日期  </span>
+                            <input class="form-control" placeholder="" readonly="readonly" name="createdTime" id="createdTime">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </table>
+</div>
+<div id="topSlotCard1">
+    <form id="passForm">
+    <table id="tab1" class="table table-striped table-hover table-bordered">
+        <div class="panel panel-primary">
+            <div class="panel-heading">
+                <h3 class="panel-title">修改密码</h3>
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">新密码  </span>
+                            <input class="form-control" placeholder="" name="newPwd" id="newPwd">
+                        </div>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">确认密码</span>
+                            <input class="form-control" placeholder="" name="newPwd" id="newPwd1">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <button type="button" id="btn" class="btn btn-success" onclick="changePwd('passFrom')">确认修改</button>
+                </div>
+            </div>
+        </div>
+    </table>
+    </form>
+</div>
+</body>
+<script type="text/javascript" src="../../../../commons/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../../../../commons/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="../../../../commons/bootstrap/table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="../../../../commons/bootstrap/table/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="../../../../commons/validate/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../../../../commons/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="../../../../commons/confirm/bootstrap.confirm.js"></script>
+<script type="text/javascript">
+    $(function () {
+        var staffId = window.localStorage.getItem("staffId");
+        var userName = window.localStorage.getItem("userName");
+        var phone = window.localStorage.getItem("phone");
+        var idCard = window.localStorage.getItem("idCard");
+        var address = window.localStorage.getItem("address");
+        var createdTime = window.localStorage.getItem("createdTime");
+        $("#staffId").val(staffId);
+        $("#userName").val(userName);
+        $("#phone").val(phone);
+        $("#idCard").val(idCard);
+        $("#address").val(address);
+        $("#createdTime").val(createdTime);
+    })
+    changePwd=function () {
+        var newPwd = $("#newPwd").val();
+        var newPwd1 = $("#newPwd1").val();
+        if (newPwd == newPwd1){
+            $.ajax({
+                url:'/UpdateStaffPassServlet',
+                type:'post',
+                data:{
+                    "staffId":$("#staffId").val(),
+                    "password":$("#newPwd").val(),
+                },
+                dataType:'json',
+                success:function (result) {
+                    var row = result;
+                    if (result.status != null) {
+                        toastr['success']("操作成功");
+                        $("#newPwd").val("");
+                        $("#newPwd1").val("");
+                    } else {
+                        toastr['error']("操作失败");
+                        $("#newPwd").val("");
+                        $("#newPwd1").val("");
+                    }
+                }
+            })
+        }else {
+            toastr['error']("操作失败");
+            $("#newPwd").val("");
+            $("#newPwd1").val("");
+        }
+    }
+
+</script>
+</html>

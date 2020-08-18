@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品消费</title>
+</head>
+<link type="text/css" rel="stylesheet" href="../commons/bootstrap/bootstrap.min.css">
+<link type="text/css" rel="stylesheet" href="../commons/bootstrap/table/bootstrap-table.min.css">
+<link type="text/css" rel="stylesheet" href="../commons/toastr/toastr.min.css">
+<link type="text/css" rel="stylesheet" href="../commons/css/common.css">
+<body>
+<div id="body">
+
+    <div id="left">
+        <table class="table table-striped table-hover table-bordered">
+            <tr>
+                <td>
+                    商品列表
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <table  class="table table-striped table-hover table-bordered" style="width: 360px;height: 120px" >
+                        <tr>
+                            <td>商品编号</td>
+                            <td> <input type="text" class="form-control" id="searchGoodsId" placeholder="商品编号"></td>
+                        </tr>
+                        <tr>
+                            <td>
+                                商品名称
+                            </td>
+                            <td>
+                                <input type="text" class="form-control" id="searchName" placeholder="商品名称">
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <button type="button" class="btn btn-primary" onclick="goodsManage.search()">搜索</button>
+                            </td>
+                            <td>
+
+                            </td>
+                        </tr>
+
+                    </table>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <!-- tableList -->
+                    <div class="tab-pane">
+                        <table class="table table-striped table-hover table-bordered" id="goodsList">
+                            <thead style="">
+
+                            </thead>
+                        </table>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+
+    <div id="right">
+        <div id="rightTop">
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <td>
+                        会员信息
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="table table-striped table-hover table-bordered">
+                            <tr>
+                                <td>会员查找</td>
+                                <td colspan="3">
+                                    <div class="col-lg-4"><input class="form-control col-lg-4" placeholder="会员卡ID"  name="serchCardId" id="serchCardId">
+                                    </div><button type="button" class="btn btn-danger" onclick="cardManage.search()">读卡</button>
+                                    <button type="button" class="btn btn-info" onclick="location.reload();">重置</button>
+                                    <button type="button" class="btn btn-primary" onclick="cardManage.show()">会员详情</button>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>会员ID</td>
+                                <td id="userId"></td>
+                                <td>会员姓名</td>
+                                <td id="userName"></td>
+                            </tr>
+                            <tr>
+                                <td>会员卡ID</td>
+                                <td id="cardId"></td>
+                                <td>会员卡余额</td>
+                                <td id="amout"></td>
+                            </tr>
+                            <tr>
+                                <td>会员等级</td>
+                                <td id="cardLevel"></td>
+                                <td>会员积分</td>
+                                <td id="credit"></td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="rightCenter">
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <td>
+                        销售清单
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="table table-striped table-hover table-bordered" id="buyGoods">
+                            <thead>
+                            <th>商品编码</th>
+                            <th>商品名称</th>
+                            <th>数量</th>
+                            <th>销售单价</th>
+                            <th>操作</th>
+                            </thead>
+                            <tbody id="bugGoodsTb">
+
+                            </tbody>
+                        </table>
+                    </td>
+                </tr>
+            </table>
+        </div>
+        <div id="rightFoot">
+            <table class="table table-striped table-hover table-bordered" id="orderList">
+                <tr>
+                    <td>订单编号</td>
+                    <td id="orderNumber"></td>
+                    <td>消费时间</td>
+                    <td id="orderTime"></td>
+                </tr>
+                <tr>
+                    <td>
+                        消费数量:
+                    </td>
+                    <td id="orderCode">
+
+                    </td>
+                    <td>
+                        消费总金额
+                    </td>
+                    <td id="orderPrice">
+
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="4"><button class="btn btn-success" onclick="orderManage.show()">提交订单</button></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="myModalLabel">
+                    会员信息列表
+                </h4>
+            </div>
+            <div class="modal-body">
+                <table class="table table-striped table-hover table-bordered" id="cardList">
+                    <thead style="background-color: #BEDDFA">
+
+                    </thead>
+                </table>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<div class="modal fade" id="consumerList" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">
+                    &times;
+                </button>
+                <h4 class="modal-title" id="consumerListLable">
+                    会员信息列表
+                </h4>
+            </div>
+            <table class="table table-striped table-hover table-bordered">
+                <tr>
+                    <td>
+                        订单列表
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <table class="table table-striped table-hover table-bordered">
+                            <tr>
+                                <td>订单编号</td>
+                                <td id="orderNum"></td>
+                                <td>
+                                    消费数量
+                                </td>
+                                <td id="codeShow"></td>
+                            </tr>
+                            <tr>
+                                <td>应付金额</td>
+                                <td id="payShow"></td>
+                                <td>
+                                    账号余额
+                                </td>
+                                <td id="amountShow"></td>
+                            </tr>
+                            <tr>
+                                <td>实付金额</td>
+                                <td>
+                                    <input class="form-control" id="pay" >
+                                </td>
+                                <td>
+                                    找零金额
+                                </td>
+                                <td id="pay-price">
+
+                                </td>
+                            </tr>
+                        </table>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">备注</span>
+                            <textarea class="form-control" placeholder="备注" name="momo" id="momo"></textarea>
+                        </div>
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <input type="button" class="btn btn-success" value="结算" onclick="orderManage.submit()">
+                    </td>
+                </tr>
+            </table>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+</body>
+<script type="text/javascript" src="../commons/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../commons/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="../commons/bootstrap/table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="../commons/bootstrap/table/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="../commons/validate/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../commons/confirm/bootstrap.confirm.js"></script>
+<script type="text/javascript" src="../commons/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="../commons/laydate/laydate.js"></script>
+<script type="text/javascript" src="consumeApi.js"></script>
+</html>

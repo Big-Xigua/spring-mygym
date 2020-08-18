@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登陆页面</title>
+    <link type="text/css" mime="text/css" rel="stylesheet" href="commons/bootstrap/bootstrap.min.css">
+    <link type="text/css" mime="text/css" rel="stylesheet" href="commons/toastr/toastr.min.css">
+    <style type="text/css">
+        #form{
+            margin-top: 15%;
+            margin-left: 30%;
+            color: white;
+        }
+        body{
+            background-image: url("img/04.png");
+            background-size: 100% 1000px;
+            background-repeat: no-repeat;
+        }
+    </style>
+</head>
+<body>
+<form class="form-horizontal" role="form" id="form">
+    <div class="form-group">
+        <label for="loginName" class="col-sm-2 control-label">账户</label>
+        <div class="col-sm-3">
+            <input type="text" class="form-control" id="loginName" name="loginName" placeholder="请输入账户">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="loginPwd" class="col-sm-2 control-label">密码</label>
+        <div class="col-sm-3">
+            <input type="password" class="form-control" id="loginPwd" name="loginPwd" placeholder="请输入密码">
+        </div>
+    </div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-4">
+            <button type="button" id="btn" class="btn btn-default" onclick="loginManager.login()">登录</button>
+        </div>
+    </div>
+</form>
+</body>
+<script type="text/javascript" src="commons/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="commons/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="commons/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="login/login.js"></script>
+</html>

@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>商品分类</title>
+    <link type="text/css" rel="stylesheet" href="../commons/bootstrap/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="../commons/bootstrap/table/bootstrap-table.min.css">
+    <link type="text/css" rel="stylesheet" href="../commons/validate/bootstrapValidator.css">
+    <link type="text/css" rel="stylesheet" href="../commons/toastr/toastr.min.css">
+    <link type="text/css" rel="stylesheet" href="../commons/css/common.css">
+</head>
+<body>
+<div class="form-groupd">
+    <label for="searchName" class="label-control">商品名字</label>
+    <input type="text" class="form-control" id="searchName" placeholder="商品名字">
+</div>
+<div class="form-groupd">
+    <label for="searchStatus" class="label-control">商品状态</label>
+    <select class="form-control" id="searchStatus">
+        <option value="-1">全部</option>
+        <option value="0">在售</option>
+        <option value="1">下架</option>
+    </select>
+</div>
+<button type="button" class="btn btn-primary" onclick="categoryManager.search()">搜索</button>
+<div class="tab-pane">
+    <table class="table table-bordered table-striped" id="categoryList">
+        <thead style="background-color: #BEDDFA">
+
+        </thead>
+    </table>
+</div>
+</body>
+<script type="text/javascript" src="../commons/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../commons/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="../commons/bootstrap/table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="../commons/bootstrap/table/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="../commons/validate/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../commons/confirm/bootstrap.confirm.js"></script>
+<script type="text/javascript" src="../commons/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="../commons/laydate/laydate.js"></script>
+<script type="text/javascript" src="categoryApi.js"></script>
+</html>

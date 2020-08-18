@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>增加会员</title>
+    <link type="text/css" rel="stylesheet" href="../commons/bootstrap/bootstrap.min.css">
+    <link type="text/css" rel="stylesheet" href="../commons/bootstrap/table/bootstrap-table.min.css">
+    <link type="text/css" rel="stylesheet" href="../commons/toastr/toastr.min.css">
+    <link type="text/css" rel="stylesheet" href="../commons/css/common.css">
+</head>
+<body>
+<div id="box">
+    <form class="form-horizontal" role="form" id="addUserForm">
+        <table class="table table-striped table-bordered tab-content">
+            <caption style="font-size: 24px">增加新会员</caption>
+            <tr>
+                <td>
+                    <div class="col-md-10">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><span style="color: red">*</span>会员姓名</span>
+                            <input class="form-control" placeholder="会员姓名" name="userName" id="userName">
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-md-10">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><span style="color: red">*</span>会员电话</span>
+                            <input class="form-control" placeholder="会员电话" name="userPhone" id="userPhone" onblur="userManager.checkUserPhone()">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td>
+                    <div class="col-md-10">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><span style="color: red">*</span>会员等级</span>
+                            <select id="userLevel" name="userLevel" class="form-control" onchange="userManager.setCredit()">
+                            </select>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-md-10">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><span style="color: red">*</span>会员状态</span>
+                            <select class="form-control" id="userStatus">
+                                <option value="1">启用</option>
+                                <option value="2">禁用</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-10">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">办卡人员</span>
+                            <input class="form-control hidden" placeholder="办卡人员" name="staffId" id="staffId">
+                            <input class="form-control" readonly="readonly" placeholder="办卡人员" name="staffName"
+                                   id="staffName">
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-md-10">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">初始积分</span>
+                            <input class="form-control" readonly="readonly" placeholder="初始积分" name="credit"
+                                   id="credit" value="0">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-10">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><span style="color: red">*</span>会员卡号</span>
+                            <input class="form-control" readonly="readonly" placeholder="会员卡号" name="cardId"
+                                   id="cardId">
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-md-10">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><span style="color: red">*</span>起充金额</span>
+                            <input class="form-control" readonly="readonly" placeholder="起充金额" name="amount"
+                                   id="amount" value="0">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td>
+                    <div class="col-md-10">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><span style="color: red">*</span>身份证号</span>
+                            <input class="form-control" placeholder="身份证号" name="idno" id="idno">
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <div class="col-md-10">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon"><span style="color: red">*</span>会员性别</span>
+                            <select class="form-control" id="userSex">
+                                <option value="0">女</option>
+                                <option value="1">男</option>
+                            </select>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div id="distpicker">
+                        <div class="col-md-3">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon"><span style="color: red">*</span>省</span>
+                                <select class="form-control" id="province">
+                                    <option>请选择</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group input-group">
+                                <span class="input-group-addon">市</span>
+                                <select class="form-control" id="city">
+                                    <option>请选择</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-3">
+                            <div class="form-group input-group" hidden>
+                            </div>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="col-md-11">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">详细地址</span>
+                            <input class="form-control" placeholder="详细地址" name="address" id="address">
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td colspan="2">
+                    <div class="col-md-11">
+                        <div class="form-group input-group">
+                            <span class="input-group-addon">备注</span>
+                            <textarea class="form-control" placeholder="备注" name="momo" id="momo"></textarea>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+            <tr>
+                <td style="text-align: right">
+                    <input type="button" class="btn btn-info" value="提交" onclick="userManager.add()">
+                </td>
+                <td style="text-align: left">
+                    <input type="reset" class="btn btn-danger" value="重置">
+                </td>
+            </tr>
+        </table>
+    </form>
+</div>
+</body>
+<script type="text/javascript" src="../commons/jquery-3.2.1.min.js"></script>
+<script type="text/javascript" src="../commons/bootstrap/bootstrap.min.js"></script>
+<script type="text/javascript" src="../commons/bootstrap/table/bootstrap-table.min.js"></script>
+<script type="text/javascript" src="../commons/bootstrap/table/bootstrap-table-zh-CN.min.js"></script>
+<script type="text/javascript" src="../commons/validate/bootstrapValidator.min.js"></script>
+<script type="text/javascript" src="../commons/confirm/bootstrap.confirm.js"></script>
+<script type="text/javascript" src="../commons/toastr/toastr.min.js"></script>
+<script type="text/javascript" src="../commons/laydate/laydate.js"></script>
+<script type="text/javascript" src="userAddApi.js"></script>
+</html>
