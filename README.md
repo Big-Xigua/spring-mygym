@@ -1,0 +1,11 @@
+＃mygym
+这是一个简易健身房项目。
+用的是spring框架
+前端采用的是bootstroup
+环境要求：
+      mysql:5.5
+      jdk:1.8
+      java:8
+运行及其简单，clone下来即可运行
+数据库文件在本地mysql运行就可以了
+本地地址--http://localhost:8080
