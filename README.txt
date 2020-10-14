@@ -6,6 +6,7 @@
       mysql:5.5
       jdk:1.8
       java:8
-运行及其简单，clone下来即可运行
+运行及其简单，clone下来，把jar包添加一下，tomcat手动配置就行了
+即可运行
 数据库文件在本地mysql运行就可以了
 本地地址--http://localhost:8080
